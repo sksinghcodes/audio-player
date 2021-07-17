@@ -1,5 +1,5 @@
-var a = document.querySelector(".a");
-var b = document.querySelector(".b");
+var progressBar = document.querySelector(".progress-bar");
+var progressFluid = document.querySelector(".progress-fluid");
 var playPauseBtn = document.querySelector(".play-pause");
 var stopBtn = document.querySelector(".stop");
 var loopToggleBtn = document.querySelector(".loop-toggle");
@@ -9,6 +9,7 @@ var totalTime = document.querySelector(".total-time");
 var mouseIsDown = false;
 var isPlaying = false;
 
+document.addEventListener('mousedown', (e) => {e.preventDefault()});
 
 playPauseBtn.onclick = () => {
     if(isPlaying){
@@ -25,7 +26,7 @@ playPauseBtn.onclick = () => {
 stopBtn.onclick = () => {
     audio.load();
     playPauseBtn.classList.replace('fa-pause', 'fa-play');
-    b.style.width = `${0}%`;
+    progressFluid.style.width = `${0}%`;
     isPlaying = false;
 }
 
@@ -49,35 +50,35 @@ audio.onplay = () => {
 
 audio.ontimeupdate = () => {
     currentTime.textContent = (mkTime(audio.currentTime)[1]+':'+mkTime(audio.currentTime)[2]);
-    b.style.width = `${Math.floor(((audio.currentTime*100)/audio.duration)*100)/100}%`;
+    progressFluid.style.width = `${Math.floor(((audio.currentTime*100)/audio.duration)*100)/100}%`;
 
     if(audio.currentTime === audio.duration){
         stopBtn.click();
     }
 }
 
-a.onmousedown = () => {
+progressBar.onmousedown = () => {
     mouseIsDown = true;
     document.onmousemove = event => {
         if(mouseIsDown 
-            && event.x >= a.offsetLeft
-            && event.x <= a.offsetLeft + a.offsetWidth
+            && event.x >= progressBar.offsetLeft
+            && event.x <= progressBar.offsetLeft + progressBar.offsetWidth
             ){
-            b.style.width = `${((event.x - a.offsetLeft)*100)/a.offsetWidth}%`;
-            audio.currentTime = ((((event.x - a.offsetLeft)*100)/a.offsetWidth)*audio.duration)/100;
-        } else if(mouseIsDown && event.x > a.offsetLeft + a.offsetWidth) {
-            b.style.width = `${100}%`;
+            progressFluid.style.width = `${((event.x - progressBar.offsetLeft)*100)/progressBar.offsetWidth}%`;
+            audio.currentTime = ((((event.x - progressBar.offsetLeft)*100)/progressBar.offsetWidth)*audio.duration)/100;
+        } else if(mouseIsDown && event.x > progressBar.offsetLeft + progressBar.offsetWidth) {
+            progressFluid.style.width = `${100}%`;
             audio.currentTime = audio.duration;
-        } else if(mouseIsDown && event.x < a.offsetLeft) {
-            b.style.width = `${0}%`;
+        } else if(mouseIsDown && event.x < progressBar.offsetLeft) {
+            progressFluid.style.width = `${0}%`;
             audio.currentTime = 0;
         }
     }
 }
 
-a.onclick = event => {
-    b.style.width = `${((event.x - a.offsetLeft)*100)/a.offsetWidth}%`;
-    audio.currentTime = ((((event.x - a.offsetLeft)*100)/a.offsetWidth)*audio.duration)/100;
+progressBar.onclick = event => {
+    progressFluid.style.width = `${((event.x - progressBar.offsetLeft)*100)/progressBar.offsetWidth}%`;
+    audio.currentTime = ((((event.x - progressBar.offsetLeft)*100)/progressBar.offsetWidth)*audio.duration)/100;
 }
 
 document.onmouseup = () => {

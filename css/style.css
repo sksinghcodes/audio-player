@@ -10,7 +10,7 @@
 	width: 100%;
 }
 
-.a {
+.progress-bar {
     width: 100%;
     background:#dadada;
 	height: 10px;
@@ -19,7 +19,7 @@
 	overflow: hidden;
 }
 
-.b {
+.progress-fluid {
     background: #4283f3;
     width: 0;
     height: 100%;
@@ -110,11 +110,4 @@ body{
 	flex-wrap: wrap;
 	padding-bottom: 7px;
 	position: relative;
-}
-
-.progress-bar{
-	width: calc(100% - 15px);
-	border-radius: 5px;
-	height: 10px;
-	background: linear-gradient(90deg, #4db6ac 0%, #4db6ac 0%, #fff5 0%, #fff5 100% );
 }
