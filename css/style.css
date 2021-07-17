@@ -1,0 +1,120 @@
+.audio {
+    width: 400px;
+    background: white;
+    border-radius: 40px;
+	box-shadow: 0 5px 5px #a5a5a5;
+	padding: 40px;
+}
+
+.controls {
+	width: 100%;
+}
+
+.a {
+    width: 100%;
+    background:#dadada;
+	height: 10px;
+	margin: 0 auto;
+	border-radius: 5px;
+	overflow: hidden;
+}
+
+.b {
+    background: #4283f3;
+    width: 0;
+    height: 100%;
+}
+
+.buttons button {
+    border: none;
+	background: none;
+	font-size: 20px;
+	margin-left: 10px;
+	color: #525252;
+}
+
+.buttons button.false {
+	color: #a7a7a7;
+}
+
+.time-and-buttons {
+    display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+}
+
+.time {
+	font-size: 18px;
+}
+
+*{
+	margin: 0;
+	padding: 0;
+	outline: none;
+	box-sizing: border-box;
+	font-family: sans-serif;
+}
+
+.clearfix::after{
+	content: "";
+	display: block;
+	clear: both;
+}
+
+body{
+	background-color: #0002;
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.vid{
+	margin: 0 30px;
+	position: relative;
+	overflow: hidden;
+	resize: both;
+}
+
+.video{
+	background-color: #0001;
+	box-shadow: 10px 10px 20px #000;
+}
+
+.vid:hover .controls{
+	transform: translateY(0);
+}
+
+.play::after{
+	content: "play";
+}
+
+.pause::after{
+	content: "pause";
+}
+
+.range{
+	width: calc(100% - 40px);
+	top: -3.5px;
+	opacity: 0;
+    position: absolute;
+}
+
+.progress-container{
+	width: 100%;
+	padding: 0 20px;
+	height: 10px;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding-bottom: 7px;
+	position: relative;
+}
+
+.progress-bar{
+	width: calc(100% - 15px);
+	border-radius: 5px;
+	height: 10px;
+	background: linear-gradient(90deg, #4db6ac 0%, #4db6ac 0%, #fff5 0%, #fff5 100% );
+}
