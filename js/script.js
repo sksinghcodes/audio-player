@@ -123,9 +123,11 @@ function mkTime(seconds){
     return [hh,mm,ss]
 }
 
-document.documentElement.style.setProperty('--vh', `${visualViewport.height}px`);
-document.documentElement.style.setProperty('--mh', `${visualViewport.height}px`);
-
-visualViewport.onresize = () => {
+document.addEventListener('DOMContentLoaded', () => {
     document.documentElement.style.setProperty('--vh', `${visualViewport.height}px`);
-}
+    document.documentElement.style.setProperty('--mh', `${visualViewport.height}px`);
+
+    visualViewport.onresize = () => {
+        document.documentElement.style.setProperty('--vh', `${visualViewport.height}px`);
+    }
+});
