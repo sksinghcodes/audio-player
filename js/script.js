@@ -82,7 +82,7 @@ progressBar.onclick = event => {
     audio.currentTime = ((((event.x - progressBar.offsetLeft)*100)/progressBar.offsetWidth)*audio.duration)/100;
 }
 
-document.onmouseup = () => {
+document.onmouseup = document.ontouchend = () => {
     mouseIsDown = false;
 }
 
