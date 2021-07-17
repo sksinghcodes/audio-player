@@ -57,19 +57,20 @@ audio.ontimeupdate = () => {
     }
 }
 
-progressBar.onmousedown = () => {
+progressBar.onmousedown = progressBar.ontouchstart = () => {
     mouseIsDown = true;
-    document.onmousemove = event => {
+    document.onmousemove = document.body.ontouchmove = event => {
+        var position = event.x || event.touches[0].clientX
         if(mouseIsDown 
-            && event.x >= progressBar.offsetLeft
-            && event.x <= progressBar.offsetLeft + progressBar.offsetWidth
+            && position >= progressBar.offsetLeft
+            && position <= progressBar.offsetLeft + progressBar.offsetWidth
             ){
-            progressFluid.style.width = `${((event.x - progressBar.offsetLeft)*100)/progressBar.offsetWidth}%`;
-            audio.currentTime = ((((event.x - progressBar.offsetLeft)*100)/progressBar.offsetWidth)*audio.duration)/100;
-        } else if(mouseIsDown && event.x > progressBar.offsetLeft + progressBar.offsetWidth) {
+            progressFluid.style.width = `${((position - progressBar.offsetLeft)*100)/progressBar.offsetWidth}%`;
+            audio.currentTime = ((((position - progressBar.offsetLeft)*100)/progressBar.offsetWidth)*audio.duration)/100;
+        } else if(mouseIsDown && position > progressBar.offsetLeft + progressBar.offsetWidth) {
             progressFluid.style.width = `${100}%`;
             audio.currentTime = audio.duration;
-        } else if(mouseIsDown && event.x < progressBar.offsetLeft) {
+        } else if(mouseIsDown && position < progressBar.offsetLeft) {
             progressFluid.style.width = `${0}%`;
             audio.currentTime = 0;
         }
