@@ -63,7 +63,8 @@
 
 body{
 	background-color: #0002;
-	height: 100vh;
+	height: var(--vh);
+    min-height: var(--mh);
 	width: 100%;
 	display: flex;
 	justify-content: center;
@@ -110,4 +111,12 @@ body{
 	flex-wrap: wrap;
 	padding-bottom: 7px;
 	position: relative;
+}
+
+@media (max-width: 768px) {
+    .audio {
+        width: calc(100% - 40px);
+        border-radius: 10px;
+        padding: 25px 25px 23px;
+    }
 }
